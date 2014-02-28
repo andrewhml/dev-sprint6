@@ -2,10 +2,11 @@
 
 def sed(patstr, repstr, file1, file2):
 	fin1 = open(file1)
-	try:
-		fin2 = open(file2)
-	except IOError:
-		print 'IOError'
+	fin2 = open(file2, 'w')
+	for line in fin1:
+		if line.strip() == patstr:
+			fin2.write(repstr+'\n')
+		else:
+			fin2.write(line)
 
-
-sed('hi', 'hello', 'filetext.txt', 'bad_file.txt')
+sed('hi', 'hello', 'first_file.txt', 'second_file.txt')
