@@ -31,8 +31,12 @@ def zipinfo():
 	for line in conn:
 		stripline = line.strip()
 		title = stripline.find('<title>')
+		population = stripline.find('Total population')
 		if title == 0:
 			end = stripline.find(',')
 			print stripline[7:end]
+		if population != -1:
+			popend = stripline.find('<span', population)
+			print stripline[population+25:popend]
 			
 zipinfo()
